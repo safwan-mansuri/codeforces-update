@@ -1,5 +1,6 @@
 require('dotenv').config()
 const cron = require('node-cron');
+const http = require('http');
 const axios = require('axios');
 const client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
@@ -38,10 +39,10 @@ const callContest = async () => {
 
 const start = () => {
   try {
-    cron.schedule('0 20 * * *', callContest);
+    cron.schedule('5 20 * * *', callContest);
   } catch(err) {
     console.log('error sending message ', err);
   }
 }
 
-start()
+http.createServer(start()).listen(process.env.PORT || 9090);
