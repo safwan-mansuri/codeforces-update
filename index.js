@@ -39,7 +39,7 @@ const callContest = async () => {
 
 const start = () => {
   try {
-    cron.schedule('5 20 * * *', callContest);
+    cron.schedule('12 20 * * *', callContest);
   } catch(err) {
     console.log('error sending message ', err);
   }
